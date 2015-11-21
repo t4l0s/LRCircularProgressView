@@ -34,4 +34,4 @@ self.progressView.title = attrString;
 
 ## License
 
-The code is MIT licensed.
+LRCircularProgressView is available under the [MIT license](LICENSE). See the LICENSE file for more info.
