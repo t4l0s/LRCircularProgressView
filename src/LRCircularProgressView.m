@@ -57,42 +57,59 @@ NSString *const LRCircularProgressPlaceholderKey = @"LRCircularProgressPlacehold
     self = [super initWithFrame:frame];
     if (self)
     {
-        CALayer *containerLayer = [CALayer new];
-        self.containerLayer = containerLayer;
-        [self.layer addSublayer: containerLayer];
-        
-        CAShapeLayer *trackLayer = [CAShapeLayer new];
-        trackLayer.fillColor = nil;
-        self.trackLayer = trackLayer;
-        [containerLayer addSublayer: trackLayer];
-        
-        CAShapeLayer *tintLayer = [CAShapeLayer new];
-        tintLayer.fillColor = nil;
-        self.tintLayer = tintLayer;
-        [containerLayer addSublayer: tintLayer];
-        
-        CAShapeLayer *remainderTintLayer = [CAShapeLayer new];
-        remainderTintLayer.fillColor = nil;
-        self.remainderTintLayer = remainderTintLayer;
-        [containerLayer addSublayer: remainderTintLayer];
-        
-        UILabel *titleLabel = [UILabel new];
-        self.titleLabel = titleLabel;
-        self.titleLabel.numberOfLines = 0;
-        self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview: titleLabel];
-        
-        self.progressTintColor = [UIColor colorWithRed:0.976f green:0.251f blue:0.196f alpha:1.00f];
-        self.progressRemainderTintColor = [UIColor colorWithRed:0.976f green:0.686f blue:0.031f alpha:1.00f];
-        
-        self.progressTrackWidth = 7.5f;
-        self.progress = 0.;
-        self.animationDuration = 2.;
-        self.animateText = YES;
-        self.textInset = 2.f;
+        [self setup];
     }
     
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self)
+    {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)setup
+{
+    CALayer *containerLayer = [CALayer new];
+    self.containerLayer = containerLayer;
+    [self.layer addSublayer: containerLayer];
+    
+    CAShapeLayer *trackLayer = [CAShapeLayer new];
+    trackLayer.fillColor = nil;
+    self.trackLayer = trackLayer;
+    [containerLayer addSublayer: trackLayer];
+    
+    CAShapeLayer *tintLayer = [CAShapeLayer new];
+    tintLayer.fillColor = nil;
+    self.tintLayer = tintLayer;
+    [containerLayer addSublayer: tintLayer];
+    
+    CAShapeLayer *remainderTintLayer = [CAShapeLayer new];
+    remainderTintLayer.fillColor = nil;
+    self.remainderTintLayer = remainderTintLayer;
+    [containerLayer addSublayer: remainderTintLayer];
+    
+    UILabel *titleLabel = [UILabel new];
+    self.titleLabel = titleLabel;
+    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview: titleLabel];
+    
+    self.progressTintColor = [UIColor colorWithRed:0.976f green:0.251f blue:0.196f alpha:1.00f];
+    self.progressRemainderTintColor = [UIColor colorWithRed:0.976f green:0.686f blue:0.031f alpha:1.00f];
+    
+    self.progressTrackWidth = 7.5f;
+    self.progress = 0.;
+    self.animationDuration = 2.;
+    self.animateText = YES;
+    self.textInset = 2.f;
+    
+    self.backgroundColor = [UIColor clearColor];
 }
 
 #if TARGET_INTERFACE_BUILDER
